@@ -1,0 +1,19 @@
+<?php
+
+// Mock Artisan script for manual Laravel-like structure
+
+$command = $argv[1] ?? null;
+
+if ($command === 'serve') {
+    echo "Starting Laravel-like development server...\n";
+    echo "Listening on http://localhost:8000\n";
+    
+    // Try to find PHP executable
+    $php = PHP_BINARY;
+    
+    // Execute built-in server
+    passthru("$php -S localhost:8000 -t public public/index.php");
+} else {
+    echo "Usage: php artisan serve\n";
+    echo "Note: This is a lightweight mock of Artisan for this manual structure.\n";
+}

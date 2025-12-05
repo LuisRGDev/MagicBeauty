@@ -1,0 +1,354 @@
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@400;600&family=Lato:wght@400;700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --primary-color: #ff69b4;
+  --secondary-color: #9932cc;
+  --gradient: linear-gradient(
+    45deg,
+    var(--primary-color),
+    var(--secondary-color)
+  );
+}
+
+body {
+  font-family: "Poppins", sans-serif; /* Fuente principal */
+  background: linear-gradient(
+    to bottom,
+    #F0FFFF,
+    #E0F7FA,
+    #F0FFFF
+  );
+  color: #333;
+  margin: 0;
+  padding: 0;
+  background-attachment: fixed;
+  background-size: cover;
+  min-height: 100vh; /* Asegura que el fondo cubra la pantalla */
+}
+
+/* Header y navegación */
+header {
+  position: fixed;
+  width: 100%;
+  padding: 1rem 2rem; /* Añadir más espacio lateral */
+  background: rgba(240, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  display: flex; /* Activa flexbox */
+  justify-content: space-between; /* Distribuye los elementos a los lados */
+  align-items: center; /* Alinea los elementos verticalmente */
+  z-index: 1000;
+}
+
+.logo {
+  display: flex; /* Alinea logo e imagen horizontalmente */
+  align-items: center; /* Centra verticalmente */
+  gap: 0.5rem; /* Espacio entre imagen y texto */
+  font-family: "Playfair Display", serif; /* Fuente elegante */
+  font-size: 1.5rem; /* Tamaño del texto */
+  font-weight: bold;
+  background: var(--gradient); /* Degradado existente */
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent; /* Hace que el texto use el degradado */
+}
+
+.logo-img {
+  width: 40px; /* Tamaño del logo */
+  height: 40px;
+  object-fit: contain; /* Evita que la imagen se deforme */
+}
+
+nav {
+  display: flex; /* Habilita flexbox */
+  justify-content: center; /* Mantén los elementos centrados */
+  align-items: center; /* Centra verticalmente */
+  height: 0; /* Ajusta la altura del nav */
+  position: relative; /* Necesario si usas transform */
+}
+
+nav ul {
+  display: flex;
+  list-style: none;
+  gap: 2rem; /* Espacio entre los enlaces */
+  margin: 0;
+  padding: 0;
+  transform: translateX(-70px); /* Mueve el menú 20px hacia la izquierda */
+}
+
+nav a {
+  font-family: "Lato", sans-serif;
+  color: #333;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+nav a:hover {
+  color: var(--primary-color);
+}
+
+nav ul.active {
+  display: flex; /* Mostramos el menú cuando tiene la clase active */
+  flex-direction: column;
+  position: absolute;
+  top: 100%; /* Coloca el menú justo debajo del header */
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.9);
+  padding: 1rem;
+  z-index: 1000;
+}
+
+/* Hero Section */
+.hero {
+  padding: 80px 10px 30px 10px;
+  background: linear-gradient(
+    to bottom,
+    #E0F7FA,
+    #F0FFFF
+  );
+  text-align: center;
+}
+
+.hero-text h1 {
+  font-family: "Playfair Display", serif;
+  font-size: 3.5rem;
+  line-height: 1.2;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: var(--primary-color);
+}
+
+.hero-text p {
+  font-family: "Lato", sans-serif;
+  color: #555;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  text-align: justify;
+  margin: 0 auto;
+  padding: 0 80px;
+}
+
+/* Servicios */
+.lashes-section {
+  padding: 0rem 2rem;
+  text-align: center;
+  background: linear-gradient(
+    to bottom,
+    #F0FFFF,
+    #E0F7FA
+  );
+  border-radius: 10px;
+  margin-bottom: 0;
+}
+
+#clasicas.lashes-section {
+  padding: 0rem 2rem 3rem 2rem;
+}
+#volumen-ruso.lashes-section {
+  padding: 0rem 2rem 3rem 2rem;
+}
+#hibrido.lashes-section {
+  padding: 0rem 2rem 3rem 2rem;
+}
+#mega-volumen.lashes-section {
+  padding: 0rem 2rem 3rem 2rem;
+}
+
+.lashes-section h2 {
+  font-family: "Playfair Display", serif;
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  color: var(--primary-color);
+}
+
+.lashes-section p {
+  font-family: "Lato", sans-serif;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #555;
+  text-align: justify;
+  margin: 0 auto;
+  padding: 10px 150px;
+}
+
+.lashes-section .desc {
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.image-gallery {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+  margin-top: 20px;
+}
+
+.image-card {
+  width: 300px;
+  background: white;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease;
+}
+
+.image-card img {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.image-card:hover {
+  transform: scale(1.05);
+}
+
+/* Botón de Agendar Cita */
+.cta-section {
+  text-align: center;
+  padding: 20px;
+  background: linear-gradient(
+    to bottom,
+    #E0F7FA,
+    #F0FFFF
+  );
+}
+
+.cta-whatsapp {
+  display: inline-block;
+  padding: 1rem 2rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+  font-family: "Poppins", sans-serif;
+  text-transform: uppercase;
+  color: #fff;
+  background: var(--gradient);
+  border: none;
+  border-radius: 50px;
+  text-decoration: none;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 10px rgba(255, 105, 180, 0.5);
+}
+
+.cta-whatsapp:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 12px rgba(255, 105, 180, 0.8);
+}
+
+/* Contacto */
+.contact {
+  padding: 5rem 2rem;
+  background: linear-gradient(to bottom, #F0FFFF, #E0F7FA);
+}
+
+.contact h2 {
+  font-family: "Playfair Display", serif;
+  font-size: 2.5rem;
+  margin-bottom: 3rem;
+  background: var(--gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.contact-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.whatsapp-icon {
+  width: 22px; /* Ajusta el tamaño del ícono */
+  height: 22px;
+  margin-right: 8px; /* Espaciado entre el ícono y el texto */
+  transition: transform 0.3s;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+input,
+textarea {
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  color: #333;
+  font-family: "Lato", sans-serif;
+  transition: border-color 0.3s;
+}
+
+input:focus,
+textarea:focus {
+  border-color: var(--primary-color);
+  outline: none;
+}
+
+.submit-btn {
+  padding: 1rem;
+  background: var(--gradient);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+
+.submit-btn:hover {
+  transform: scale(1.05);
+}
+
+/* Footer */
+footer {
+  padding: 2rem;
+  text-align: center;
+  background: linear-gradient(to bottom, #E0F7FA, #F0FFFF);
+  color: #666;
+  font-family: "Lato", sans-serif;
+  font-size: 0.9rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .hero h1 {
+    font-size: 2.5rem;
+  }
+
+  nav ul {
+    display: none;
+  }
+
+  nav ul.active {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.9);
+    padding: 1rem;
+  }
+
+  .image-gallery {
+    flex-direction: column;
+  }
+
+  .image-card {
+    width: 100%;
+  }
+}
