@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Iniciar Sesión - Magic Beauty</title>
+    <title>Registrarse - Magic Beauty</title>
     <link rel="stylesheet" href="<?= asset('css/styles.css') ?>">
     <style>
         .login-container {
@@ -19,7 +19,7 @@
             background: rgba(255, 255, 255, 0.9);
             border-radius: 15px;
             padding: 3rem;
-            max-width: 400px;
+            max-width: 450px;
             width: 100%;
             box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
         }
@@ -50,6 +50,7 @@
             border-radius: 8px;
             font-size: 1rem;
             transition: border-color 0.3s;
+            box-sizing: border-box;
         }
 
         .form-group input:focus {
@@ -83,6 +84,15 @@
             text-align: center;
         }
 
+        .success-message {
+            background: #e8f5e9;
+            color: #2e7d32;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
         .back-link {
             text-align: center;
             margin-top: 1.5rem;
@@ -96,12 +106,18 @@
         .back-link a:hover {
             text-decoration: underline;
         }
+
+        .password-hint {
+            font-size: 0.85rem;
+            color: #666;
+            margin-top: 0.25rem;
+        }
     </style>
 </head>
 <body>
     <div class="login-container">
         <div class="login-box">
-            <h1 class="login-title">Iniciar Sesión</h1>
+            <h1 class="login-title">Crear Cuenta</h1>
             
             <?php if (isset($error)): ?>
                 <div class="error-message">
@@ -109,26 +125,41 @@
                 </div>
             <?php endif; ?>
 
-            <form action="/login" method="POST">
+            <?php if (isset($success)): ?>
+                <div class="success-message">
+                    <?= htmlspecialchars($success) ?>
+                </div>
+            <?php endif; ?>
+
+            <form action="/register" method="POST">
                 <div class="form-group">
                     <label for="username">Usuario</label>
-                    <input type="text" id="username" name="username" required autofocus>
+                    <input type="text" id="username" name="username" required autofocus 
+                           value="<?= isset($_POST['username']) ? htmlspecialchars($_POST['username']) : '' ?>">
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Correo Electrónico</label>
+                    <input type="email" id="email" name="email" required
+                           value="<?= isset($_POST['email']) ? htmlspecialchars($_POST['email']) : '' ?>">
                 </div>
 
                 <div class="form-group">
                     <label for="password">Contraseña</label>
-                    <input type="password" id="password" name="password" required>
+                    <input type="password" id="password" name="password" required minlength="8">
+                    <div class="password-hint">Mínimo 8 caracteres</div>
                 </div>
 
-                <button type="submit" class="btn-login">Ingresar</button>
+                <div class="form-group">
+                    <label for="password_confirm">Confirmar Contraseña</label>
+                    <input type="password" id="password_confirm" name="password_confirm" required minlength="8">
+                </div>
+
+                <button type="submit" class="btn-login">Registrarse</button>
             </form>
 
             <div class="back-link">
-                <a href="/">← Volver al inicio</a>
-            </div>
-            
-            <div class="back-link" style="margin-top: 1rem;">
-                <a href="/register">¿No tienes cuenta? Regístrate</a>
+                <a href="/login">¿Ya tienes cuenta? Inicia sesión</a>
             </div>
         </div>
     </div>

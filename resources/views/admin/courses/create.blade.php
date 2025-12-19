@@ -106,25 +106,50 @@
     <div class="admin-container">
         <h1 class="admin-title">Crear Nuevo Curso</h1>
 
+        <?php
+        require_once __DIR__ . '/../../../../app/Session.php';
+        
+        // Display error messages
+        if (Session::hasFlash('error')) {
+            echo '<div style="background: #fee; border: 1px solid #fcc; color: #c33; padding: 1rem; border-radius: 5px; margin-bottom: 1rem;">';
+            echo '<strong>Error:</strong> ' . htmlspecialchars(Session::getFlash('error'));
+            echo '</div>';
+        }
+        
+        // Display validation errors
+        if (Session::hasFlash('errors')) {
+            $errors = Session::getFlash('errors');
+            echo '<div style="background: #fee; border: 1px solid #fcc; color: #c33; padding: 1rem; border-radius: 5px; margin-bottom: 1rem;">';
+            echo '<strong>Por favor corrige los siguientes errores:</strong><ul style="margin: 0.5rem 0 0 1.5rem;">';
+            foreach ($errors as $error) {
+                echo '<li>' . htmlspecialchars($error) . '</li>';
+            }
+            echo '</ul></div>';
+        }
+        
+        // Get old input values
+        $old = Session::getFlash('old') ?? [];
+        ?>
+
         <form action="/admin/cursos/store" method="POST">
             <div class="form-group">
                 <label for="title">Título del Curso *</label>
-                <input type="text" id="title" name="title" required>
+                <input type="text" id="title" name="title" value="<?= htmlspecialchars($old['title'] ?? '') ?>" required>
             </div>
 
             <div class="form-group">
                 <label for="description">Descripción *</label>
-                <textarea id="description" name="description" required></textarea>
+                <textarea id="description" name="description" required><?= htmlspecialchars($old['description'] ?? '') ?></textarea>
             </div>
 
             <div class="form-group">
                 <label for="price">Precio ($) *</label>
-                <input type="number" id="price" name="price" step="0.01" min="0" required>
+                <input type="number" id="price" name="price" step="0.01" min="0" value="<?= htmlspecialchars($old['price'] ?? '') ?>" required>
             </div>
 
             <div class="form-group">
                 <label for="image">URL de la Imagen</label>
-                <input type="text" id="image" name="image" placeholder="https://ejemplo.com/imagen.jpg">
+                <input type="text" id="image" name="image" value="<?= htmlspecialchars($old['image'] ?? '') ?>" placeholder="https://ejemplo.com/imagen.jpg">
                 <small style="color: #666; display: block; margin-top: 0.3rem;">
                     Puedes usar una URL de Unsplash o cualquier imagen pública
                 </small>
@@ -132,7 +157,7 @@
 
             <div class="form-group">
                 <div class="checkbox-group">
-                    <input type="checkbox" id="is_active" name="is_active" checked>
+                    <input type="checkbox" id="is_active" name="is_active" <?= (!isset($old['is_active']) || $old['is_active']) ? 'checked' : '' ?>>
                     <label for="is_active" style="margin: 0;">Curso Activo</label>
                 </div>
             </div>

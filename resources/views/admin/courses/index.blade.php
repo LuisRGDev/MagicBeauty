@@ -123,10 +123,30 @@
         <div class="admin-header">
             <h1 class="admin-title">Administrar Cursos</h1>
             <div style="display: flex; gap: 1rem;">
+                <a href="/admin/cursos" class="btn-primary">Cursos</a>
+                <a href="/admin/users" class="btn-primary" style="background: #2196F3;">Usuarios</a>
                 <a href="/admin/cursos/create" class="btn-primary">+ Nuevo Curso</a>
                 <a href="/logout" class="btn-primary" style="background: #666;">Cerrar Sesión</a>
             </div>
         </div>
+
+        <?php
+        require_once __DIR__ . '/../../../../app/Session.php';
+        
+        // Display success message
+        if (Session::hasFlash('success')) {
+            echo '<div style="background: #dff0d8; border: 1px solid #d6e9c6; color: #3c763d; padding: 1rem; border-radius: 5px; margin-bottom: 1rem;">';
+            echo '<strong>¡Éxito!</strong> ' . htmlspecialchars(Session::getFlash('success'));
+            echo '</div>';
+        }
+        
+        // Display error message
+        if (Session::hasFlash('error')) {
+            echo '<div style="background: #fee; border: 1px solid #fcc; color: #c33; padding: 1rem; border-radius: 5px; margin-bottom: 1rem;">';
+            echo '<strong>Error:</strong> ' . htmlspecialchars(Session::getFlash('error'));
+            echo '</div>';
+        }
+        ?>
 
         <table class="courses-table">
             <thead>

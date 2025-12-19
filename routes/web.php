@@ -35,6 +35,14 @@ $router->get('/logout', function () use ($authController) {
     return $authController->logout();
 });
 
+$router->get('/register', function () use ($authController) {
+    return $authController->showRegister();
+});
+
+$router->post('/register', function () use ($authController) {
+    return $authController->register();
+});
+
 // Public Courses Route
 $router->get('/cursos', function () use ($courseController) {
     return $courseController->index();
@@ -61,6 +69,28 @@ $router->post('/admin/cursos/{id}/update', function ($id) use ($courseController
     return $courseController->update($id);
 });
 
+
 $router->get('/admin/cursos/{id}/delete', function ($id) use ($courseController) {
     return $courseController->destroy($id);
 });
+
+// Admin User Management Routes
+require_once __DIR__ . '/../app/Controllers/UserController.php';
+$userController = new UserController();
+
+$router->get('/admin/users', function () use ($userController) {
+    return $userController->index();
+});
+
+$router->get('/admin/users/create', function () use ($userController) {
+    return $userController->create();
+});
+
+$router->post('/admin/users/store', function () use ($userController) {
+    return $userController->store();
+});
+
+$router->get('/admin/users/{id}/delete', function ($id) use ($userController) {
+    return $userController->delete($id);
+});
+

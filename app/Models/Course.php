@@ -40,19 +40,26 @@ class Course {
     }
 
     public function create($data) {
-        $query = "INSERT INTO " . $this->table_name . " SET title=:title, description=:description, price=:price, image=:image, is_active=:is_active";
-        $stmt = $this->conn->prepare($query);
+        try {
+            $query = "INSERT INTO " . $this->table_name . " (title, description, price, image, is_active) VALUES (:title, :description, :price, :image, :is_active)";
+            $stmt = $this->conn->prepare($query);
 
-        $stmt->bindParam(":title", $data['title']);
-        $stmt->bindParam(":description", $data['description']);
-        $stmt->bindParam(":price", $data['price']);
-        $stmt->bindParam(":image", $data['image']);
-        $stmt->bindParam(":is_active", $data['is_active']);
+            $stmt->bindParam(":title", $data['title']);
+            $stmt->bindParam(":description", $data['description']);
+            $stmt->bindParam(":price", $data['price']);
+            $stmt->bindParam(":image", $data['image']);
+            $stmt->bindParam(":is_active", $data['is_active']);
 
-        if($stmt->execute()) {
-            return true;
+            if($stmt->execute()) {
+                return true;
+            }
+            
+            // Get error info if execution failed
+            $errorInfo = $stmt->errorInfo();
+            throw new Exception("Database error: " . $errorInfo[2]);
+        } catch (PDOException $e) {
+            throw new Exception("Error creating course: " . $e->getMessage());
         }
-        return false;
     }
 
     public function update($id, $data) {

@@ -1,5 +1,10 @@
 <?php
 
+// Start session at the very beginning
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
 // Handle PHP built-in server
 if (php_sapi_name() === 'cli-server') {
     $url  = parse_url($_SERVER['REQUEST_URI']);

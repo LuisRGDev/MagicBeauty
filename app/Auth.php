@@ -46,6 +46,7 @@ class Auth {
         return isset($_SESSION['role']) && $_SESSION['role'] === 'admin';
     }
     
+    
     public function getUser() {
         if (session_status() === PHP_SESSION_NONE) {
             session_start();
@@ -58,5 +59,35 @@ class Auth {
             ];
         }
         return null;
+    }
+    
+    public function register($username, $email, $password) {
+        try {
+            // Check if username already exists
+            $query = "SELECT COUNT(*) FROM users WHERE username = ?";
+            $stmt = $this->conn->prepare($query);
+            $stmt->execute([$username]);
+            if ($stmt->fetchColumn() > 0) {
+                return 'El nombre de usuario ya está en uso';
+            }
+            
+            // Check if email already exists
+            $query = "SELECT COUNT(*) FROM users WHERE email = ?";
+            $stmt = $this->conn->prepare($query);
+            $stmt->execute([$email]);
+            if ($stmt->fetchColumn() > 0) {
+                return 'El correo electrónico ya está registrado';
+            }
+            
+            // Create user
+            $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+            $query = "INSERT INTO users (username, email, password, role) VALUES (?, ?, ?, 'user')";
+            $stmt = $this->conn->prepare($query);
+            $stmt->execute([$username, $email, $hashedPassword]);
+            
+            return true;
+        } catch (PDOException $e) {
+            return 'Error al crear la cuenta: ' . $e->getMessage();
+        }
     }
 }
