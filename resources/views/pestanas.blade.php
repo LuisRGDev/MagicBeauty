@@ -65,7 +65,7 @@
           <li><a href="#contacto">Contacto</a></li>
         </ul>
       </nav>
-      <a href="<?= route('home') ?>/cursos" class="cursos-btn">📚 Cursos</a>
+      <!-- <a href="<?= route('home') ?>/cursos" class="cursos-btn">📚 Cursos</a> -->
       <button class="menu-toggle">☰</button>
     </header>
 
@@ -126,7 +126,7 @@
           <img src="<?= asset('img/hibrido.jpg') ?>" alt="Extensiones Híbridas" onerror="this.src='https://images.unsplash.com/photo-1522337660859-02fbefca4702?q=80&w=1000&auto=format&fit=crop'" />
           <div class="service-content">
             <h3>Híbridas (Wispy)</h3>
-            <p>Lo mejor de dos mundos. Textura y profundidad para una mirada coqueta y desenfadada, estilo "Kylie", que robará todas las miradas.</p>
+            <p>Lo mejor de dos mundos. Textura y profundidad para una mirada coqueta y desenfadada, que robará todas las miradas.</p>
             <p style="font-size: 0.9rem; margin-top: 0.5rem; color: var(--primary-color);">Tiempo de aplicación: 1h 30m</p>
           </div>
         </div>
@@ -138,6 +138,16 @@
             <h3>Mega Volumen</h3>
             <p>Impacto total. Una densidad espectacular para quienes aman el drama y la intensidad. Despierta cada día lista para brillar.</p>
             <p style="font-size: 0.9rem; margin-top: 0.5rem; color: var(--primary-color);">Tiempo de aplicación: 1h 30m</p>
+          </div>
+        </div>
+        
+        <!-- Rizado de Pestañas -->
+        <div class="service-card animate-card" style="--delay: 0.8s">
+          <img src="<?= asset('img/rizado.jpg') ?>" alt="Rizado de Pestañas" onerror="this.src='https://images.unsplash.com/photo-1512496015851-a90fb38ba796?q=80&w=1000&auto=format&fit=crop'" />
+          <div class="service-content">
+            <h3>Rizado de Pestañas (Lash Lift)</h3>
+            <p>Realza tus pestañas naturales con una curvatura perfecta y duradera. Ideal si buscas un look natural sin extensiones.</p>
+            <p style="font-size: 0.9rem; margin-top: 0.5rem; color: var(--primary-color);">Tiempo de aplicación: 45m - 1h</p>
           </div>
         </div>
       </div>

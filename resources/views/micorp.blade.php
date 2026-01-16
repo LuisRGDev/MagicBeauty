@@ -65,7 +65,7 @@
                 <li><a href="#contacto">Contacto</a></li>
             </ul>
         </nav>
-        <a href="<?= route('home') ?>/cursos" class="cursos-btn">📚 Cursos</a>
+        <!-- <a href="<?= route('home') ?>/cursos" class="cursos-btn">📚 Cursos</a> -->
         <button class="menu-toggle">☰</button>
     </header>
 
@@ -100,7 +100,7 @@
         <div class="services-container">
             <!-- Cejas -->
             <div class="service-card animate-card" style="--delay: 0s">
-                <img src="https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?q=80&w=1000&auto=format&fit=crop" alt="Cejas" />
+                <img src="<?= asset('img/microblading.jpg') ?>" alt="Cejas" onerror="this.src='https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?q=80&w=1000&auto=format&fit=crop'" />
                 <div class="service-content">
                     <h3>Cejas (Microblading)</h3>
                     <p>Diseño pelo a pelo para unas cejas definidas y naturales. Ideal para rellenar huecos o dar forma.</p>
@@ -110,7 +110,7 @@
 
             <!-- Delineado -->
             <div class="service-card animate-card" style="--delay: 0.2s">
-                <img src="https://images.unsplash.com/photo-1596462502278-27bfdd403348?q=80&w=1000&auto=format&fit=crop" alt="Delineado de Ojos" />
+                <img src="https://images.unsplash.com/photo-IvcnaVvg6ZY?q=80&w=1000&auto=format&fit=crop" alt="Delineado de Ojos" onerror="this.src='https://images.unsplash.com/photo-1596462502278-27bfdd403348?q=80&w=1000&auto=format&fit=crop'" />
                 <div class="service-content">
                     <h3>Delineado de Ojos</h3>
                     <p>Realza tu mirada con un delineado sutil o marcado. Ahorra tiempo en tu rutina diaria.</p>
@@ -120,11 +120,21 @@
 
             <!-- Labios -->
             <div class="service-card animate-card" style="--delay: 0.4s">
-                <img src="https://images.unsplash.com/photo-1588510026303-8843b178be62?q=80&w=1000&auto=format&fit=crop" alt="Labios" />
+                <img src="https://images.unsplash.com/photo-4aSQwMectnc?q=80&w=1000&auto=format&fit=crop" alt="Labios" onerror="this.src='https://images.unsplash.com/photo-1512496015851-a90fb38ba796?q=80&w=1000&auto=format&fit=crop'" />
                 <div class="service-content">
-                    <h3>Color en Labios</h3>
+                    <h3>Micropigmentación de Labios</h3>
                     <p>Baby lips o full color. Define el contorno y da un tono saludable a tus labios.</p>
                     <p style="font-size: 0.9rem; margin-top: 0.5rem; color: var(--primary-color);">Tiempo de aplicación: 2h</p>
+                </div>
+            </div>
+            
+            <!-- Laminado de Cejas -->
+            <div class="service-card animate-card" style="--delay: 0.6s">
+                <img src="<?= asset('img/laminado.jpg') ?>" alt="Laminado de Cejas" onerror="this.src='https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?q=80&w=1000&auto=format&fit=crop'" />
+                <div class="service-content">
+                    <h3>Laminado de Cejas</h3>
+                    <p>Cejas perfectamente peinadas y definidas con un efecto duradero. Dale forma y volumen a tus cejas naturales.</p>
+                    <p style="font-size: 0.9rem; margin-top: 0.5rem; color: var(--primary-color);">Tiempo de aplicación: 45m - 1h</p>
                 </div>
             </div>
         </div>

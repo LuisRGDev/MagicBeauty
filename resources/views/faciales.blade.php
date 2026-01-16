@@ -65,7 +65,7 @@
                 <li><a href="#contacto">Contacto</a></li>
             </ul>
         </nav>
-        <a href="<?= route('home') ?>/cursos" class="cursos-btn">📚 Cursos</a>
+        <!-- <a href="<?= route('home') ?>/cursos" class="cursos-btn">📚 Cursos</a> -->
         <button class="menu-toggle">☰</button>
     </header>
 
