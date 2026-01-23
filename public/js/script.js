@@ -1,29 +1,44 @@
-// ========== Menú Móvil ==========
+// ========== Menú Móvil (New Sidebar) ==========
 (() => {
     const menuToggle = document.querySelector('.menu-toggle');
-    const navLeft = document.querySelector('.nav-left');
-    const navRight = document.querySelector('.nav-right');
+    const menuClose = document.querySelector('.menu-close');
+    const mobileNav = document.querySelector('.mobile-nav');
+    const mobileOverlay = document.querySelector('.mobile-menu-overlay');
+
+    const toggleMenu = () => {
+        mobileNav.classList.toggle('active');
+        mobileOverlay.classList.toggle('active');
+        document.body.style.overflow = mobileNav.classList.contains('active') ? 'hidden' : '';
+    };
+
+    const closeMenu = () => {
+        mobileNav.classList.remove('active');
+        mobileOverlay.classList.remove('active');
+        document.body.style.overflow = '';
+    };
 
     if (menuToggle) {
-        menuToggle.addEventListener('click', () => {
-            if (navLeft) navLeft.classList.toggle('active');
-            if (navRight) navRight.classList.toggle('active');
-        });
-
-        // Cerrar el menú al hacer clic en un enlace
-        document.querySelectorAll('.nav-left a, .nav-right a').forEach(link => {
-            link.addEventListener('click', () => {
-                if (navLeft) navLeft.classList.remove('active');
-                if (navRight) navRight.classList.remove('active');
-            });
-        });
+        menuToggle.addEventListener('click', toggleMenu);
     }
+
+    if (menuClose) {
+        menuClose.addEventListener('click', closeMenu);
+    }
+
+    if (mobileOverlay) {
+        mobileOverlay.addEventListener('click', closeMenu);
+    }
+
+    // Close menu when clicking internal links
+    document.querySelectorAll('.mobile-links a').forEach(link => {
+        link.addEventListener('click', closeMenu);
+    });
 })();
 
 // ========== Social Media Carousel Auto-Scroll ==========
 (() => {
     const carouselTrack = document.querySelector('.carousel-track');
-    
+
     if (carouselTrack) {
         const slides = document.querySelectorAll('.carousel-slide');
         const leftArrow = document.querySelector('.carousel-arrow-left');
@@ -31,7 +46,7 @@
         const realSlides = 3;
         let currentSlide = 0;
         let isTransitioning = false;
-        
+
         const updateCarousel = (transition = true) => {
             if (transition) {
                 carouselTrack.style.transition = 'transform 0.6s ease-in-out';
@@ -51,38 +66,38 @@
             }
             isTransitioning = false;
         });
-        
+
         const autoScroll = () => {
             if (isTransitioning) return;
             currentSlide++;
             updateCarousel(true);
         };
-        
+
         // Auto-scroll every 8 seconds
         let autoScrollInterval = setInterval(autoScroll, 8000);
-        
+
         // Arrow navigation
         if (leftArrow) {
             leftArrow.addEventListener('click', () => {
                 if (isTransitioning) return;
-                
+
                 if (currentSlide === 0) {
                     currentSlide = realSlides;
                     updateCarousel(false); // Jump to end duplicate instantly
                     // Force reflow to ensure the jump happens before animation
-                    void carouselTrack.offsetWidth; 
+                    void carouselTrack.offsetWidth;
                     currentSlide--;
                     updateCarousel(true);
                 } else {
                     currentSlide--;
                     updateCarousel(true);
                 }
-                
+
                 clearInterval(autoScrollInterval);
                 autoScrollInterval = setInterval(autoScroll, 8000);
             });
         }
-        
+
         if (rightArrow) {
             rightArrow.addEventListener('click', () => {
                 if (isTransitioning) return;
@@ -91,14 +106,14 @@
                 autoScrollInterval = setInterval(autoScroll, 8000);
             });
         }
-        
+
         // Pause auto-scroll on hover
         const carouselContainer = document.querySelector('.carousel-container');
         if (carouselContainer) {
             carouselContainer.addEventListener('mouseenter', () => {
                 clearInterval(autoScrollInterval);
             });
-            
+
             carouselContainer.addEventListener('mouseleave', () => {
                 autoScrollInterval = setInterval(autoScroll, 8000);
             });
@@ -109,7 +124,7 @@
 // ========== Scroll Progress Bar ==========
 (() => {
     const scrollProgress = document.querySelector('.scroll-progress');
-    
+
     window.addEventListener('scroll', () => {
         const windowHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
         const scrolled = (window.scrollY / windowHeight) * 100;
@@ -125,7 +140,7 @@
         anchor.addEventListener('click', function (e) {
             const targetId = this.getAttribute('href');
             const target = document.querySelector(targetId);
-            
+
             if (target) {
                 e.preventDefault();
                 target.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -185,7 +200,7 @@
         // Validación en tiempo real
         const inputs = form.querySelectorAll('input, textarea');
         inputs.forEach(input => {
-            input.addEventListener('blur', function() {
+            input.addEventListener('blur', function () {
                 if (this.value.trim() === '') {
                     this.style.borderColor = '#ff4444';
                 } else {
@@ -193,7 +208,7 @@
                 }
             });
 
-            input.addEventListener('input', function() {
+            input.addEventListener('input', function () {
                 if (this.value.trim() !== '') {
                     this.style.borderColor = 'var(--primary-color)';
                 }
@@ -349,9 +364,9 @@
 // ========== Galería con Hover Effects ==========
 (() => {
     const galleryItems = document.querySelectorAll('.gallery-item');
-    
+
     galleryItems.forEach(item => {
-        item.addEventListener('click', function() {
+        item.addEventListener('click', function () {
             const img = this.querySelector('img');
             if (img) {
                 // Crear lightbox simple
@@ -369,7 +384,7 @@
                     z-index: 10000;
                     cursor: pointer;
                 `;
-                
+
                 const lightboxImg = document.createElement('img');
                 lightboxImg.src = img.src;
                 lightboxImg.style.cssText = `
@@ -378,10 +393,10 @@
                     border-radius: 10px;
                     box-shadow: 0 0 50px rgba(255, 105, 180, 0.5);
                 `;
-                
+
                 lightbox.appendChild(lightboxImg);
                 document.body.appendChild(lightbox);
-                
+
                 lightbox.addEventListener('click', () => {
                     document.body.removeChild(lightbox);
                 });
@@ -393,7 +408,7 @@
 // ========== Scroll to Top Button ==========
 (() => {
     const scrollToTopBtn = document.querySelector('.scroll-to-top');
-    
+
     if (scrollToTopBtn) {
         window.addEventListener('scroll', () => {
             if (window.pageYOffset > 300) {
@@ -415,7 +430,7 @@
 // ========== Lazy Loading de Imágenes ==========
 (() => {
     const images = document.querySelectorAll('img[loading="lazy"]');
-    
+
     if ('IntersectionObserver' in window) {
         const imageObserver = new IntersectionObserver((entries, observer) => {
             entries.forEach(entry => {
@@ -435,13 +450,13 @@
 // ========== Animación de Números en Stats ==========
 (() => {
     const statNumbers = document.querySelectorAll('.stat-number');
-    
+
     const animateNumber = (element) => {
         const target = parseInt(element.textContent);
         const duration = 2000;
         const increment = target / (duration / 16);
         let current = 0;
-        
+
         const updateNumber = () => {
             current += increment;
             if (current < target) {
@@ -451,10 +466,10 @@
                 element.textContent = target + '+';
             }
         };
-        
+
         updateNumber();
     };
-    
+
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting && !entry.target.classList.contains('animated')) {
@@ -463,14 +478,14 @@
             }
         });
     }, { threshold: 0.5 });
-    
+
     statNumbers.forEach(stat => observer.observe(stat));
 })();
 
 // ========== Efecto de Partículas en Hero ==========
 (() => {
     const heroParticles = document.querySelector('.hero-particles');
-    
+
     if (heroParticles) {
         // Crear partículas animadas
         for (let i = 0; i < 20; i++) {

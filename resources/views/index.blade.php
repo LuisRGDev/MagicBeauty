@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Beauty Studio</title>
+    <title>Magik Beauty</title>
     <link rel="stylesheet" href="<?= asset('css/styles.css') ?>" />
   </head>
   <body>
@@ -16,7 +16,7 @@
       </nav>
       <a href="<?= route('home') ?>" class="logo">
         <img src="<?= asset('img/logo.png') ?>" alt="logo" class="logo-img" />
-        Beauty Studio
+        Magik Beauty
       </a>
       <nav class="nav-right">
         <ul>
@@ -265,10 +265,10 @@
         <div class="footer-column">
           <h3>Síguenos</h3>
           <div class="social-links">
-            <a href="#" class="social-link" aria-label="Instagram">
+            <a href="https://www.instagram.com/magikbeauty__bygisel/?utm_source=qr&igsh=Y2N0bjJkM3BlOHE3" class="social-link" aria-label="Instagram">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
             </a>
-            <a href="#" class="social-link" aria-label="Facebook">
+            <a href="https://www.facebook.com/profile.php?id=100064063332814&rdid=zkRjetzghBoTXe2Y&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F17LBFWRzyw%2F#" class="social-link" aria-label="Facebook">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
             </a>
           </div>
@@ -278,6 +278,30 @@
         <p>&copy; 2024 Magik Beauty. Todos los derechos reservados.</p>
       </div>
     </footer>
+
+    <div class="mobile-menu-overlay"></div>
+    <aside class="mobile-nav">
+        <button class="menu-close">&times;</button>
+        <div class="mobile-nav-content">
+            <a href="<?= route('home') ?>" class="mobile-logo">
+                <img src="<?= asset('img/logo.png') ?>" alt="logo">
+            </a>
+            <ul class="mobile-links">
+                <li><a href="<?= route('home') ?>#inicio">Inicio</a></li>
+                <li><a href="<?= route('home') ?>#nosotros">Nosotros</a></li>
+                <li><a href="<?= route('home') ?>#servicios">Servicios</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+            <div class="mobile-social">
+                 <a href="https://www.instagram.com/magikbeauty__bygisel/?utm_source=qr&igsh=Y2N0bjJkM3BlOHE3#" aria-label="Instagram">Instagram</a>
+                 <a href="https://www.facebook.com/profile.php?id=100064063332814&rdid=zkRjetzghBoTXe2Y&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F17LBFWRzyw%2F#" aria-label="Facebook">Facebook</a>
+            </div>
+        </div>
+    </aside>
+
+    <a href="https://wa.me/15123649251?text=Hola me gustaria agendar una cita!" class="whatsapp-float" target="_blank" aria-label="Chat en WhatsApp">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+    </a>
 
     <script src="<?= asset('js/script.js') ?>"></script>
   </body>

@@ -5,47 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Extensión de Pestañas - Magic Beauty</title>
     <link rel="stylesheet" href="<?= asset('css/styles.css') ?>" />
-    <style>
-      /* Page-specific overrides for Pestañas.html to improve readability */
-      #servicios-pestanas .service-card {
-        display: flex;
-        flex-direction: column;
-        height: auto;
-        min-height: 100%;
-        background: rgba(255, 255, 255, 0.8);
-        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-      }
 
-      #servicios-pestanas .service-card img {
-        height: 250px;
-        width: 100%;
-        object-fit: cover;
-        filter: brightness(0.9);
-      }
-
-      #servicios-pestanas .service-content {
-        position: relative; /* Stack below image */
-        transform: none; /* Reset animation transform */
-        background: transparent; /* Remove gradient overlay */
-        padding: 1.5rem;
-        flex-grow: 1;
-        opacity: 1; /* Always visible */
-      }
-
-      #servicios-pestanas .service-card:hover .service-content {
-        transform: none; /* Disable slide up on hover */
-      }
-
-      #servicios-pestanas .service-content h3 {
-        font-size: 1.5rem;
-        margin-bottom: 0.5rem;
-      }
-
-      #servicios-pestanas .service-content p {
-        opacity: 0.8;
-        font-size: 0.95rem;
-      }
-    </style>
   </head>
   <body>
     <header>
@@ -57,7 +17,7 @@
       </nav>
       <a href="<?= route('home') ?>" class="logo">
         <img src="<?= asset('img/logo.png') ?>" alt="logo" class="logo-img" />
-        Beauty Studio
+        Magik Beauty
       </a>
       <nav class="nav-right">
         <ul>
@@ -236,6 +196,30 @@
         <p>&copy; 2024 Magik Beauty. Todos los derechos reservados.</p>
       </div>
     </footer>
+
+    <div class="mobile-menu-overlay"></div>
+    <aside class="mobile-nav">
+        <button class="menu-close">&times;</button>
+        <div class="mobile-nav-content">
+            <a href="<?= route('home') ?>" class="mobile-logo">
+                <img src="<?= asset('img/logo.png') ?>" alt="logo">
+            </a>
+            <ul class="mobile-links">
+                <li><a href="<?= route('home') ?>#inicio">Inicio</a></li>
+                <li><a href="<?= route('home') ?>#nosotros">Nosotros</a></li>
+                <li><a href="<?= route('home') ?>#servicios">Servicios</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+            <div class="mobile-social">
+                 <a href="#" aria-label="Instagram">Instagram</a>
+                 <a href="#" aria-label="Facebook">Facebook</a>
+            </div>
+        </div>
+    </aside>
+
+    <a href="https://wa.me/15123649251?text=Hola me gustaria agendar una cita!" class="whatsapp-float" target="_blank" aria-label="Chat en WhatsApp">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+    </a>
 
     <script src="<?= asset('js/script.js') ?>"></script>
   </body>

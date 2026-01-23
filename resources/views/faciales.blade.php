@@ -5,47 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Faciales - Magic Beauty</title>
     <link rel="stylesheet" href="<?= asset('css/styles.css') ?>">
-    <style>
-      /* Page-specific overrides to match Pestañas design */
-      #servicios-faciales .service-card {
-        display: flex;
-        flex-direction: column;
-        height: auto;
-        min-height: 100%;
-        background: rgba(255, 255, 255, 0.8);
-        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-      }
 
-      #servicios-faciales .service-card img {
-        height: 250px;
-        width: 100%;
-        object-fit: cover;
-        filter: brightness(0.9);
-      }
-
-      #servicios-faciales .service-content {
-        position: relative;
-        transform: none;
-        background: transparent;
-        padding: 1.5rem;
-        flex-grow: 1;
-        opacity: 1;
-      }
-
-      #servicios-faciales .service-card:hover .service-content {
-        transform: none;
-      }
-
-      #servicios-faciales .service-content h3 {
-        font-size: 1.5rem;
-        margin-bottom: 0.5rem;
-      }
-
-      #servicios-faciales .service-content p {
-        opacity: 0.8;
-        font-size: 0.95rem;
-      }
-    </style>
 </head>
 <body>
     <header>
@@ -57,7 +17,7 @@
         </nav>
         <a href="<?= route('home') ?>" class="logo">
             <img src="<?= asset('img/logo.png') ?>" alt="logo" class="logo-img">
-            Beauty Studio
+            Magic Beauty
         </a>
         <nav class="nav-right">
             <ul>
@@ -110,7 +70,7 @@
 
             <!-- Dermapen -->
             <div class="service-card animate-card" style="--delay: 0.2s">
-                <img src="https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?q=80&w=1000&auto=format&fit=crop" alt="Dermapen" />
+                <img src="https://plus.unsplash.com/premium_photo-1661481689382-4445fd07fd5f?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8ZGVybWFwZW58ZW58MHx8MHx8fDA%3D" alt="Dermapen" />
                 <div class="service-content">
                     <h3>Dermapen</h3>
                     <p>Micropunciones que estimulan la producción de colágeno y elastina. Ideal para cicatrices de acné y rejuvenecimiento.</p>
@@ -120,7 +80,7 @@
 
             <!-- Radiofrecuencia -->
             <div class="service-card animate-card" style="--delay: 0.4s">
-                <img src="https://plus.unsplash.com/premium_photo-1661432565338-7264871d3431?q=80&w=1000&auto=format&fit=crop" alt="Radiofrecuencia" />
+                <img src="https://plus.unsplash.com/premium_photo-1661270455059-0a4f6be356e4?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8c2VydmljaW8lMjBkZSUyMHJhZGlvZnJlY3VlbmNpYSUyMHBhcmElMjBsYSUyMHBpZWx8ZW58MHx8MHx8fDA%3D" alt="Radiofrecuencia" />
                 <div class="service-content">
                     <h3>Radiofrecuencia</h3>
                     <p>Lifting sin cirugía. Reafirma la piel y reduce líneas de expresión mediante calor controlado.</p>
@@ -130,7 +90,7 @@
 
             <!-- Alta Frecuencia -->
             <div class="service-card animate-card" style="--delay: 0.6s">
-                <img src="https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?q=80&w=1000&auto=format&fit=crop" alt="Alta Frecuencia" />
+                <img src="https://plus.unsplash.com/premium_photo-1661768548751-d2312e47a315?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8c2VydmljaW8lMjBkZSUyMGFsdGElMjBmcmVjdWVuY2lhJTIwcGFyYSUyMGxhJTIwcGllbHxlbnwwfHwwfHx8MA%3D%3D" alt="Alta Frecuencia" />
                 <div class="service-content">
                     <h3>Alta Frecuencia</h3>
                     <p>Tratamiento bactericida y oxigenante. Perfecto para pieles con tendencia al acné y para cerrar poros.</p>
@@ -208,6 +168,30 @@
         <p>&copy; 2024 Magik Beauty. Todos los derechos reservados.</p>
       </div>
     </footer>
+
+    <div class="mobile-menu-overlay"></div>
+    <aside class="mobile-nav">
+        <button class="menu-close">&times;</button>
+        <div class="mobile-nav-content">
+            <a href="<?= route('home') ?>" class="mobile-logo">
+                <img src="<?= asset('img/logo.png') ?>" alt="logo">
+            </a>
+            <ul class="mobile-links">
+                <li><a href="<?= route('home') ?>#inicio">Inicio</a></li>
+                <li><a href="<?= route('home') ?>#nosotros">Nosotros</a></li>
+                <li><a href="<?= route('home') ?>#servicios">Servicios</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+            <div class="mobile-social">
+                 <a href="#" aria-label="Instagram">Instagram</a>
+                 <a href="#" aria-label="Facebook">Facebook</a>
+            </div>
+        </div>
+    </aside>
+
+    <a href="https://wa.me/15123649251?text=Hola me gustaria agendar una cita!" class="whatsapp-float" target="_blank" aria-label="Chat en WhatsApp">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+    </a>
 
     <script src="<?= asset('js/script.js') ?>"></script>
 </body>

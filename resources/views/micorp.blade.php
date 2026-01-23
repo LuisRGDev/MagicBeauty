@@ -5,47 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Micropigmentación - Magic Beauty</title>
     <link rel="stylesheet" href="<?= asset('css/styles.css') ?>">
-    <style>
-      /* Page-specific overrides to match Pestañas design */
-      #servicios-micorp .service-card {
-        display: flex;
-        flex-direction: column;
-        height: auto;
-        min-height: 100%;
-        background: rgba(255, 255, 255, 0.8);
-        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-      }
 
-      #servicios-micorp .service-card img {
-        height: 250px;
-        width: 100%;
-        object-fit: cover;
-        filter: brightness(0.9);
-      }
-
-      #servicios-micorp .service-content {
-        position: relative;
-        transform: none;
-        background: transparent;
-        padding: 1.5rem;
-        flex-grow: 1;
-        opacity: 1;
-      }
-
-      #servicios-micorp .service-card:hover .service-content {
-        transform: none;
-      }
-
-      #servicios-micorp .service-content h3 {
-        font-size: 1.5rem;
-        margin-bottom: 0.5rem;
-      }
-
-      #servicios-micorp .service-content p {
-        opacity: 0.8;
-        font-size: 0.95rem;
-      }
-    </style>
 </head>
 <body>
     <header>
@@ -57,7 +17,7 @@
         </nav>
         <a href="<?= route('home') ?>" class="logo">
             <img src="<?= asset('img/logo.png') ?>" alt="logo" class="logo-img">
-            Beauty Studio
+            Magic Beauty
         </a>
         <nav class="nav-right">
             <ul>
@@ -110,7 +70,7 @@
 
             <!-- Delineado -->
             <div class="service-card animate-card" style="--delay: 0.2s">
-                <img src="https://images.unsplash.com/photo-IvcnaVvg6ZY?q=80&w=1000&auto=format&fit=crop" alt="Delineado de Ojos" onerror="this.src='https://images.unsplash.com/photo-1596462502278-27bfdd403348?q=80&w=1000&auto=format&fit=crop'" />
+                <img src="https://images.unsplash.com/photo-1709477542149-f4e0e21d590b?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8RGVsaW5lYWRvJTIwZGUlMjBvam9zJTIwc2VydmljaW98ZW58MHx8MHx8fDA%3D" alt="Delineado de Ojos" onerror="this.src='https://images.unsplash.com/photo-1596462502278-27bfdd403348?q=80&w=1000&auto=format&fit=crop'" />
                 <div class="service-content">
                     <h3>Delineado de Ojos</h3>
                     <p>Realza tu mirada con un delineado sutil o marcado. Ahorra tiempo en tu rutina diaria.</p>
@@ -120,7 +80,7 @@
 
             <!-- Labios -->
             <div class="service-card animate-card" style="--delay: 0.4s">
-                <img src="https://images.unsplash.com/photo-4aSQwMectnc?q=80&w=1000&auto=format&fit=crop" alt="Labios" onerror="this.src='https://images.unsplash.com/photo-1512496015851-a90fb38ba796?q=80&w=1000&auto=format&fit=crop'" />
+                <img src="https://media.istockphoto.com/id/1427969498/es/foto/mujer-joven-sometida-a-un-procedimiento-de-maquillaje-permanente-de-labios-en-un-sal%C3%B3n-de.webp?a=1&b=1&s=612x612&w=0&k=20&c=82nM5rKrpH9uH81sfr_McTfyOg5rR_CY_z-S3DY4lis=" alt="Labios" onerror="this.src='https://images.unsplash.com/photo-1512496015851-a90fb38ba796?q=80&w=1000&auto=format&fit=crop'" />
                 <div class="service-content">
                     <h3>Micropigmentación de Labios</h3>
                     <p>Baby lips o full color. Define el contorno y da un tono saludable a tus labios.</p>
@@ -208,6 +168,31 @@
         <p>&copy; 2024 Magik Beauty. Todos los derechos reservados.</p>
       </div>
     </footer>
+
+    <div class="mobile-menu-overlay"></div>
+    <aside class="mobile-nav">
+        <button class="menu-close">&times;</button>
+        <div class="mobile-nav-content">
+            <a href="<?= route('home') ?>" class="mobile-logo">
+                <img src="<?= asset('img/logo.png') ?>" alt="logo">
+            </a>
+            <ul class="mobile-links">
+                <li><a href="<?= route('home') ?>#inicio">Inicio</a></li>
+                <li><a href="<?= route('home') ?>#nosotros">Nosotros</a></li>
+                <li><a href="<?= route('home') ?>#servicios">Servicios</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+                <!-- <li><a href="<?= route('home') ?>/cursos">Cursos</a></li> -->
+            </ul>
+            <div class="mobile-social">
+                 <a href="#" aria-label="Instagram">Instagram</a>
+                 <a href="#" aria-label="Facebook">Facebook</a>
+            </div>
+        </div>
+    </aside>
+
+    <a href="https://wa.me/15123649251?text=Hola me gustaria agendar una cita!" class="whatsapp-float" target="_blank" aria-label="Chat en WhatsApp">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+    </a>
 
     <script src="<?= asset('js/script.js') ?>"></script>
 </body>
