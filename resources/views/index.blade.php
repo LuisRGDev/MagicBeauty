@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Magik Beauty</title>
+    <title>Magik Beauty Gisel</title>
     <link rel="stylesheet" href="<?= asset('css/styles.css') ?>" />
   </head>
   <body>
@@ -16,7 +16,7 @@
       </nav>
       <a href="<?= route('home') ?>" class="logo">
         <img src="<?= asset('img/logo.png') ?>" alt="logo" class="logo-img" />
-        Magik Beauty
+        Magik Beauty Gisel
       </a>
       <nav class="nav-right">
         <ul>
@@ -30,7 +30,7 @@
 
     <section id="inicio" class="hero">
       <div class="hero-text animate-fade-in">
-        <h1>Magik Beauty</h1>
+        <h1>Magik Beauty Gisel</h1>
         <p class="subtitle">Realza tu Belleza Natural</p>
         <p class="services-list">
           Extension de Pestañas · Tratamientos Faciales · Micropigmentacion
@@ -244,7 +244,7 @@
     <footer class="site-footer">
       <div class="footer-content">
         <div class="footer-column">
-          <h3>Magik Beauty</h3>
+          <h3>Magik Beauty Gisel</h3>
           <p>Realza tu belleza natural con nuestros servicios profesionales de pestañas, faciales y micropigmentación.</p>
         </div>
         <div class="footer-column">
@@ -275,7 +275,7 @@
         </div>
       </div>
       <div class="footer-bottom">
-        <p>&copy; 2024 Magik Beauty. Todos los derechos reservados.</p>
+        <p>&copy; 2024 Magik Beauty Gisel. Todos los derechos reservados.</p>
       </div>
     </footer>
 

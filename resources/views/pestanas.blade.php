@@ -162,7 +162,7 @@
     <footer class="site-footer">
       <div class="footer-content">
         <div class="footer-column">
-          <h3>Magik Beauty</h3>
+          <h3>Magik Beauty Gisel</h3>
           <p>Realza tu belleza natural con nuestros servicios profesionales de pestañas, faciales y micropigmentación.</p>
         </div>
         <div class="footer-column">
@@ -193,7 +193,7 @@
         </div>
       </div>
       <div class="footer-bottom">
-        <p>&copy; 2024 Magik Beauty. Todos los derechos reservados.</p>
+        <p>&copy; 2024 Magik Beauty Gisel. Todos los derechos reservados.</p>
       </div>
     </footer>
 
