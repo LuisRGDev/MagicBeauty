@@ -17,7 +17,7 @@
         </nav>
         <a href="<?= route('home') ?>" class="logo">
             <img src="<?= asset('img/logo.png') ?>" alt="logo" class="logo-img">
-            Magic Beauty
+            Magic Beauty Gisel
         </a>
         <nav class="nav-right">
             <ul>

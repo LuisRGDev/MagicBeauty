@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Extensión de Pestañas - Magic Beauty</title>
+    <title>Extensión de Pestañas - Magic Beauty Gisel</title>
     <link rel="stylesheet" href="<?= asset('css/styles.css') ?>" />
 
   </head>
@@ -17,7 +17,7 @@
       </nav>
       <a href="<?= route('home') ?>" class="logo">
         <img src="<?= asset('img/logo.png') ?>" alt="logo" class="logo-img" />
-        Magik Beauty
+        Magik Beauty Gisel
       </a>
       <nav class="nav-right">
         <ul>
