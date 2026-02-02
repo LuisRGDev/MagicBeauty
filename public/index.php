@@ -1,9 +1,11 @@
 <?php
 
-// Start session at the very beginning
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
+
+require_once __DIR__ . '/../app/Env.php';
+Env::load(__DIR__ . '/../.env');
 
 // Handle PHP built-in server
 if (php_sapi_name() === 'cli-server') {

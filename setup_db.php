@@ -5,9 +5,15 @@ $database = new Database();
 $db = $database->getConnection();
 
 if ($db) {
-    // SQLite syntax
+    // Check driver
+    $driver = $db->getAttribute(PDO::ATTR_DRIVER_NAME);
+    
+    $idType = ($driver === 'sqlite') 
+        ? 'INTEGER PRIMARY KEY AUTOINCREMENT' 
+        : 'INT AUTO_INCREMENT PRIMARY KEY';
+
     $sql = "CREATE TABLE IF NOT EXISTS courses (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        id $idType,
         title TEXT NOT NULL,
         description TEXT,
         price REAL NOT NULL,
