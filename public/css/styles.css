@@ -1032,7 +1032,9 @@ header.scrolled {
 
 
 /* ========== Pestañas Page Specific Styles ========== */
-#servicios-pestanas .service-card {
+#servicios-pestanas .service-card,
+#servicios-faciales .service-card,
+#servicios-micorp .service-card {
     display: flex;
     flex-direction: column;
     height: auto;
@@ -1040,14 +1042,18 @@ header.scrolled {
     background: rgba(255, 255, 255, 0.05);
 }
 
-#servicios-pestanas .service-card img {
+#servicios-pestanas .service-card img,
+#servicios-faciales .service-card img,
+#servicios-micorp .service-card img {
     height: 250px;
     width: 100%;
     object-fit: cover;
     filter: brightness(0.9);
 }
 
-#servicios-pestanas .service-content {
+#servicios-pestanas .service-content,
+#servicios-faciales .service-content,
+#servicios-micorp .service-content {
     position: relative;
     transform: none;
     background: transparent;
@@ -1056,16 +1062,22 @@ header.scrolled {
     opacity: 1;
 }
 
-#servicios-pestanas .service-card:hover .service-content {
+#servicios-pestanas .service-card:hover .service-content,
+#servicios-faciales .service-card:hover .service-content,
+#servicios-micorp .service-card:hover .service-content {
     transform: none;
 }
 
-#servicios-pestanas .service-content h3 {
+#servicios-pestanas .service-content h3,
+#servicios-faciales .service-content h3,
+#servicios-micorp .service-content h3 {
     font-size: 1.5rem;
     margin-bottom: 0.5rem;
 }
 
-#servicios-pestanas .service-content p {
+#servicios-pestanas .service-content p,
+#servicios-faciales .service-content p,
+#servicios-micorp .service-content p {
     opacity: 0.8;
     font-size: 0.95rem;
 }
@@ -1682,7 +1694,8 @@ header.scrolled {
     /* Carousel Mobile - CRITICAL */
     .carousel-slide,
     .carousel-container {
-        height: 60vh !important;
+        height: 50vh !important;
+        min-height: 300px;
     }
 
     .social-btn {
@@ -1724,7 +1737,8 @@ header.scrolled {
 
     .carousel-slide,
     .carousel-container {
-        height: 50vh !important;
+        height: 40vh !important;
+        min-height: 250px;
     }
 
     .contact-container {
