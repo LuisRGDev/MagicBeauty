@@ -1737,7 +1737,8 @@ header.scrolled {
 
     .carousel-slide,
     .carousel-container {
-        height: 40vh !important;
+        height: 35vh !important;
+        /* Slightly smaller for better aspect ratio on phones */
         min-height: 250px;
     }
 
@@ -1758,17 +1759,56 @@ header.scrolled {
         font-size: 1rem;
     }
 
-    /* Service Pages Specific Mobile */
+    /* Service Pages Specific Mobile - REFINED & ROBUST */
+    /* Applies to Home Page #servicios AND individual service pages */
+    .service-card,
+    #servicios-pestanas .service-card,
+    #servicios-faciales .service-card,
+    #servicios-micorp .service-card {
+        display: flex;
+        flex-direction: column;
+        height: auto;
+        min-height: auto;
+        border-radius: 10px;
+        overflow: hidden;
+    }
+
+    .service-card img,
     #servicios-pestanas .service-card img,
     #servicios-faciales .service-card img,
     #servicios-micorp .service-card img {
-        height: 200px;
+        height: 250px;
+        width: 100%;
+        object-fit: cover;
+        filter: none;
+        /* Ensure brightness is good on mobile */
     }
 
+    .service-content,
+    #servicios-pestanas .service-content,
+    #servicios-faciales .service-content,
+    #servicios-micorp .service-content {
+        position: relative;
+        transform: none;
+        background: #F0FFFF;
+        /* Solid light background for readability */
+        padding: 1.5rem;
+        opacity: 1;
+        text-align: left;
+    }
+
+    .service-content h3,
     #servicios-pestanas .service-content h3,
     #servicios-faciales .service-content h3,
     #servicios-micorp .service-content h3 {
-        font-size: 1.3rem;
+        font-size: 1.5rem;
+        margin-bottom: 0.8rem;
+    }
+
+    .service-content p {
+        color: #333;
+        /* Ensure high contrast */
+        font-size: 1rem;
     }
 }
 
