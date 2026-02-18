@@ -9,6 +9,8 @@ export function ContactForm() {
     message: ''
   });
   const [errors, setErrors] = useState<string[]>([]);
+  const [sending, setSending] = useState(false);
+  const [honey, setHoney] = useState('');
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -18,11 +20,41 @@ export function ContactForm() {
       setErrors(validation.errors);
       return;
     }
-
-    // Aquí iría la lógica para enviar el formulario
-    console.log('Formulario enviado:', formData);
-    setFormData({ name: '', email: '', message: '' });
     setErrors([]);
+    setSending(true);
+
+    // Enviar vía FormSubmit (sin backend) al correo indicado
+    const payload = new FormData();
+    payload.append('name', formData.name);
+    payload.append('email', formData.email);
+    payload.append('message', formData.message);
+    // Honeypot: si está lleno, asumimos spam y abortamos silenciosamente
+    if (honey.trim() !== '') {
+      setSending(false);
+      return;
+    }
+
+    // Redirección de agradecimiento y desactivar captcha de FormSubmit (opcional)
+    payload.append('_next', window.location.origin + '/gracias.html');
+    payload.append('_captcha', 'false');
+    payload.append('_subject', 'Nuevo mensaje desde la web');
+
+    fetch('https://formsubmit.co/gismiri23@gmail.com', {
+      method: 'POST',
+      body: payload
+    }).then((res) => {
+      if (res.ok) {
+        alert('¡Mensaje enviado con éxito!');
+        setFormData({ name: '', email: '', message: '' });
+      } else {
+        alert('Hubo un problema al enviar el formulario. Intenta de nuevo.');
+      }
+    }).catch((err) => {
+      console.error('Error enviando formulario:', err);
+      alert('No se pudo enviar el formulario. Por favor intenta más tarde.');
+    }).finally(() => {
+      setSending(false);
+    });
   };
 
   return (
@@ -62,8 +94,9 @@ export function ContactForm() {
       <button
         type="submit"
         className="w-full px-6 py-3 bg-gradient-to-r from-pink-500 to-purple-500 text-white rounded-lg flex items-center justify-center space-x-2 hover:from-pink-600 hover:to-purple-600 transition-colors"
+        disabled={sending}
       >
-        <span>Enviar Mensaje</span>
+        <span>{sending ? 'Enviando...' : 'Enviar Mensaje'}</span>
         <Send className="h-5 w-5" />
       </button>
     </form>
