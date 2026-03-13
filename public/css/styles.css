@@ -162,7 +162,7 @@ h6 {
 
 /* ========== Header y Navegación - Creative Luxury Design ========== */
 header {
-    position: static;
+    position: relative;
     width: 100%;
     padding: 0.8rem 4rem;
     background: rgba(240, 255, 255, 0.95);
@@ -361,31 +361,37 @@ header.scrolled {
 
 /* ========== Cursos Button - Special Style ========== */
 .cursos-btn {
-    position: absolute;
-    right: 5rem;
-    top: 50%;
-    transform: translateY(-50%);
     padding: 0.5rem 1.2rem;
     font-size: 0.85rem;
-    font-weight: 600;
+    font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 1px;
-    text-decoration: none;
-    color: white;
-    background: var(--gradient);
+    text-decoration: none !important;
+    color: white !important;
+    background: var(--gradient) !important;
     border-radius: 20px;
-    box-shadow: 0 4px 15px rgba(255, 105, 180, 0.3);
+    box-shadow: 0 4px 15px rgba(255, 105, 180, 0.35);
     transition: all 0.3s ease;
-    z-index: 10;
-    display: flex;
+    display: inline-flex;
     align-items: center;
     gap: 0.3rem;
+    white-space: nowrap;
+    line-height: 1;
 }
 
 .cursos-btn:hover {
-    transform: translateY(-50%) scale(1.05);
-    box-shadow: 0 6px 20px rgba(255, 105, 180, 0.5);
+    transform: translateY(-2px) scale(1.05) !important;
+    box-shadow: 0 8px 22px rgba(255, 105, 180, 0.55) !important;
+    color: white !important;
 }
+
+/* Override nav underline for cursos-btn */
+.nav-right a.cursos-btn::after,
+.nav-left a.cursos-btn::after,
+li a.cursos-btn::after {
+    display: none !important;
+}
+
 
 .menu-toggle {
     display: none;
@@ -1311,7 +1317,8 @@ header.scrolled {
     overflow: hidden;
     position: relative;
     width: 100%;
-    height: 105vh;
+    height: 100vh;
+    height: 100dvh;
 }
 
 .carousel-container::-webkit-scrollbar {
@@ -1326,7 +1333,8 @@ header.scrolled {
 
 .carousel-slide {
     min-width: 100%;
-    height: 105vh;
+    height: 100vh;
+    height: 100dvh;
     position: relative;
     display: flex;
     align-items: center;
@@ -1435,8 +1443,24 @@ header.scrolled {
 }
 
 .carousel-arrow svg {
-    width: 24px;
     height: 24px;
+}
+
+@media (max-width: 480px) {
+    .carousel-arrow {
+        width: 40px;
+        height: 40px;
+        background: rgba(255, 255, 255, 0.25);
+        /* More visible on mobile */
+    }
+
+    .carousel-arrow-left {
+        left: 10px;
+    }
+
+    .carousel-arrow-right {
+        right: 10px;
+    }
 }
 
 /* ========== CONSOLIDATED RESPONSIVE DESIGN ========== */
@@ -1689,8 +1713,34 @@ header.scrolled {
         justify-content: center;
     }
 
+    /* Cursos btn: hide floating version, show inline in mobile sidebar */
     .cursos-btn {
         display: none;
+    }
+
+    .cursos-btn-mobile {
+        display: inline-flex !important;
+        align-items: center;
+        justify-content: center;
+        gap: 0.4rem;
+        background: var(--gradient);
+        color: #fff;
+        text-decoration: none;
+        font-family: 'Lato', sans-serif;
+        font-size: 1rem;
+        font-weight: 700;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        padding: 0.7rem 2rem;
+        border-radius: 50px;
+        box-shadow: 0 4px 15px rgba(255, 105, 180, 0.35);
+        transition: all 0.3s ease;
+        margin-top: 0.5rem;
+    }
+
+    .cursos-btn-mobile:hover {
+        transform: scale(1.04);
+        box-shadow: 0 6px 20px rgba(255, 105, 180, 0.55);
     }
 
     /* Carousel Mobile - CRITICAL */

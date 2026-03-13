@@ -35,21 +35,34 @@
     });
 })();
 
-// ========== Social Media Carousel Auto-Scroll ==========
+// ========== Social Media Carousel Auto-Scroll & Touch ==========
 (() => {
     const carouselTrack = document.querySelector('.carousel-track');
+    const container = document.querySelector('.carousel-container');
 
-    if (carouselTrack) {
+    if (carouselTrack && container) {
         const slides = document.querySelectorAll('.carousel-slide');
         const leftArrow = document.querySelector('.carousel-arrow-left');
         const rightArrow = document.querySelector('.carousel-arrow-right');
-        const realSlides = 3;
-        let currentSlide = 0;
+
+        // We have: [Clone Last, Slide 1, Slide 2, Slide 3, Clone First]
+        // Length = 5. Real slides are indices 1, 2, 3.
+        const totalSlides = slides.length;
+        let currentSlide = 1; // Start at first real slide
         let isTransitioning = false;
+        let autoScrollInterval;
+
+        // Touch variables
+        let touchStartX = 0;
+        let touchEndX = 0;
+        const minSwipeDistance = 50;
+
+        // Initialize position
+        carouselTrack.style.transform = `translateX(-${currentSlide * 100}%)`;
 
         const updateCarousel = (transition = true) => {
             if (transition) {
-                carouselTrack.style.transition = 'transform 0.6s ease-in-out';
+                carouselTrack.style.transition = 'transform 0.5s ease-in-out';
                 isTransitioning = true;
             } else {
                 carouselTrack.style.transition = 'none';
@@ -58,66 +71,95 @@
             carouselTrack.style.transform = `translateX(-${currentSlide * 100}%)`;
         };
 
-        // Handle transition end to loop back seamlessly
-        carouselTrack.addEventListener('transitionend', () => {
-            if (currentSlide === realSlides) {
-                currentSlide = 0;
-                updateCarousel(false); // Jump instantly to start
-            }
-            isTransitioning = false;
-        });
-
-        const autoScroll = () => {
-            if (isTransitioning) return;
+        const nextSlide = () => {
+            if (isTransitioning || currentSlide >= totalSlides - 1) return;
             currentSlide++;
             updateCarousel(true);
         };
 
-        // Auto-scroll every 8 seconds
-        let autoScrollInterval = setInterval(autoScroll, 8000);
+        const prevSlide = () => {
+            if (isTransitioning || currentSlide <= 0) return;
+            currentSlide--;
+            updateCarousel(true);
+        };
 
-        // Arrow navigation
-        if (leftArrow) {
-            leftArrow.addEventListener('click', () => {
-                if (isTransitioning) return;
+        // Handle Loop Reset
+        carouselTrack.addEventListener('transitionend', () => {
+            isTransitioning = false;
+            if (currentSlide === totalSlides - 1) {
+                // We are at Clone First, jump to Slide 1
+                currentSlide = 1;
+                updateCarousel(false);
+            } else if (currentSlide === 0) {
+                // We are at Clone Last, jump to Slide 3 (Last real)
+                currentSlide = totalSlides - 2;
+                updateCarousel(false);
+            }
+        });
 
-                if (currentSlide === 0) {
-                    currentSlide = realSlides;
-                    updateCarousel(false); // Jump to end duplicate instantly
-                    // Force reflow to ensure the jump happens before animation
-                    void carouselTrack.offsetWidth;
-                    currentSlide--;
-                    updateCarousel(true);
-                } else {
-                    currentSlide--;
-                    updateCarousel(true);
-                }
+        // Auto Scroll
+        const startAutoScroll = () => {
+            clearInterval(autoScrollInterval);
+            autoScrollInterval = setInterval(() => {
+                nextSlide();
+            }, 5000);
+        };
 
-                clearInterval(autoScrollInterval);
-                autoScrollInterval = setInterval(autoScroll, 8000);
-            });
-        }
+        const stopAutoScroll = () => {
+            clearInterval(autoScrollInterval);
+        };
 
+        // Arrows
         if (rightArrow) {
             rightArrow.addEventListener('click', () => {
-                if (isTransitioning) return;
-                autoScroll();
-                clearInterval(autoScrollInterval);
-                autoScrollInterval = setInterval(autoScroll, 8000);
+                stopAutoScroll();
+                nextSlide();
+                startAutoScroll();
             });
         }
 
-        // Pause auto-scroll on hover
-        const carouselContainer = document.querySelector('.carousel-container');
-        if (carouselContainer) {
-            carouselContainer.addEventListener('mouseenter', () => {
-                clearInterval(autoScrollInterval);
-            });
-
-            carouselContainer.addEventListener('mouseleave', () => {
-                autoScrollInterval = setInterval(autoScroll, 8000);
+        if (leftArrow) {
+            leftArrow.addEventListener('click', () => {
+                stopAutoScroll();
+                prevSlide();
+                startAutoScroll();
             });
         }
+
+        // Mouse Hover Pause
+        container.addEventListener('mouseenter', stopAutoScroll);
+        container.addEventListener('mouseleave', startAutoScroll);
+
+        // Touch Events
+        container.addEventListener('touchstart', (e) => {
+            stopAutoScroll();
+            touchStartX = e.touches[0].clientX;
+        }, { passive: true });
+
+        container.addEventListener('touchmove', (e) => {
+            touchEndX = e.touches[0].clientX;
+        }, { passive: true });
+
+        container.addEventListener('touchend', () => {
+            const distance = touchStartX - touchEndX;
+            // Only swipe if there was a move
+            if (touchEndX !== 0) {
+                if (distance > minSwipeDistance) {
+                    // Swipe Left -> Next Slide
+                    nextSlide();
+                } else if (distance < -minSwipeDistance) {
+                    // Swipe Right -> Prev Slide
+                    prevSlide();
+                }
+            }
+            // Reset
+            touchStartX = 0;
+            touchEndX = 0;
+            startAutoScroll();
+        });
+
+        // Initialize
+        startAutoScroll();
     }
 })();
 

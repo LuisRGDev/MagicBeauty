@@ -46,6 +46,11 @@ $router->post('/register', function () use ($authController) {
 // Public Courses Route
 $router->get('/cursos', function () use ($courseController) {
     return $courseController->index();
+})->name('cursos');
+
+// User Dashboard (requires login)
+$router->get('/dashboard', function () use ($authController) {
+    return $authController->dashboard();
 });
 
 // Admin Routes (Protected)

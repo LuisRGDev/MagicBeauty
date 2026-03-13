@@ -145,13 +145,13 @@
     <div class="admin-container">
         <div class="admin-header">
             <h1>Gestión de Usuarios</h1>
-            <a href="/" class="btn btn-primary">← Volver al Inicio</a>
+            <a href="<?= asset('') ?>" class="btn btn-primary">← Volver al Inicio</a>
         </div>
 
         <div class="admin-nav">
-            <a href="/admin/cursos">Cursos</a>
-            <a href="/admin/users" class="active">Usuarios</a>
-            <a href="/logout" style="margin-left: auto;">Cerrar Sesión</a>
+            <a href="<?= asset('admin/cursos') ?>">Cursos</a>
+            <a href="<?= asset('admin/users') ?>" class="active">Usuarios</a>
+            <a href="<?= route('logout') ?>" style="margin-left: auto;">Cerrar Sesión</a>
         </div>
 
         <?php if (isset($_GET['error'])): ?>
@@ -161,7 +161,7 @@
         <?php endif; ?>
 
         <div style="margin-bottom: 1.5rem;">
-            <a href="/admin/users/create" class="btn btn-primary">+ Crear Nuevo Usuario/Admin</a>
+            <a href="<?= asset('admin/users/create') ?>" class="btn btn-primary">+ Crear Nuevo Usuario/Admin</a>
         </div>
 
         <table class="users-table">
@@ -196,7 +196,7 @@
                             <td><?= date('d/m/Y H:i', strtotime($user->created_at)) ?></td>
                             <td>
                                 <div class="actions">
-                                    <a href="/admin/users/<?= $user->id ?>/delete" 
+                                    <a href="<?= asset('admin/users/' . $user->id . '/delete') ?>" 
                                        class="btn btn-danger btn-small"
                                        onclick="return confirm('¿Estás seguro de eliminar este usuario?')">
                                         Eliminar

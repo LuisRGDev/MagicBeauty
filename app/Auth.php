@@ -18,6 +18,7 @@ class Auth {
         
         if ($user && password_verify($password, $user->password)) {
             session_start();
+            session_regenerate_id(true); // Previene session fixation
             $_SESSION['user_id'] = $user->id;
             $_SESSION['username'] = $user->username;
             $_SESSION['role'] = $user->role;

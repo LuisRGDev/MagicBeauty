@@ -79,14 +79,37 @@ function asset($path) {
 }
 
 function route($name) {
-    // Basic route helper - returns base path for now
+    // Named routes map
+    $namedRoutes = [
+        'home'     => '/',
+        'pestanas' => '/pestanas',
+        'faciales' => '/faciales',
+        'micorp'   => '/micorp',
+        'cursos'   => '/cursos',
+        'login'    => '/login',
+        'register' => '/register',
+        'logout'   => '/logout',
+    ];
+
     $scriptName = str_replace('\\', '/', dirname($_SERVER['SCRIPT_NAME']));
-    
+
     // If we are at the root (e.g. built-in server), dirname is '/' or empty.
-    // We want to return '/' so that links are absolute (e.g. /#inicio).
     if ($scriptName === '/' || $scriptName === '.') {
-        return '/';
+        $base = '';
+    } else {
+        $base = $scriptName;
     }
-    
-    return $scriptName;
+
+    // If the name is known, return base + named URI
+    if (isset($namedRoutes[$name])) {
+        $uri = $namedRoutes[$name];
+        if ($uri === '/') {
+            return $base ?: '/';
+        }
+        return $base . $uri;
+    }
+
+    // Fallback: return base path (old behaviour)
+    return $base ?: '/';
 }
+

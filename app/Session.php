@@ -91,4 +91,33 @@ class Session {
         }
         unset($_SESSION[$key]);
     }
+
+    /**
+     * Generate a CSRF token and store it in session
+     */
+    public static function generateCsrfToken() {
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
+        if (empty($_SESSION['csrf_token'])) {
+            $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+        }
+        return $_SESSION['csrf_token'];
+    }
+
+    /**
+     * Verify the CSRF token from a POST request
+     */
+    public static function verifyCsrfToken($token) {
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
+        if (empty($_SESSION['csrf_token']) || empty($token)) {
+            return false;
+        }
+        $valid = hash_equals($_SESSION['csrf_token'], $token);
+        // Rotate token after use
+        unset($_SESSION['csrf_token']);
+        return $valid;
+    }
 }

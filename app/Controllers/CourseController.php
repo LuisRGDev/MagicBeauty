@@ -11,8 +11,12 @@ class CourseController {
         $this->auth = new Auth();
     }
 
-    // Public: List active courses
+    // Public: List active courses (requires login)
     public function index() {
+        if (!$this->auth->isLoggedIn()) {
+            header('Location: ' . asset('login?redirect=/cursos'));
+            exit;
+        }
         $courses = $this->course->getAll(true);
         return view('courses.index', ['courses' => $courses]);
     }
@@ -20,7 +24,7 @@ class CourseController {
     // Admin: List all courses
     public function adminIndex() {
         if (!$this->auth->isAdmin()) {
-            header('Location: /login');
+            header('Location: ' . asset('login'));
             exit;
         }
         $courses = $this->course->getAll(false);
@@ -30,7 +34,7 @@ class CourseController {
     // Admin: Show create form
     public function create() {
         if (!$this->auth->isAdmin()) {
-            header('Location: /login');
+            header('Location: ' . asset('login'));
             exit;
         }
         return view('admin.courses.create');
@@ -39,7 +43,7 @@ class CourseController {
     // Admin: Store new course
     public function store() {
         if (!$this->auth->isAdmin()) {
-            header('Location: /login');
+            header('Location: ' . asset('login'));
             exit;
         }
         
@@ -75,7 +79,7 @@ class CourseController {
             require_once __DIR__ . '/../Session.php';
             Session::flash('errors', $errors);
             Session::flash('old', $_POST);
-            header('Location: /admin/cursos/create');
+            header('Location: ' . asset('admin/cursos/create'));
             exit;
         }
         
@@ -93,18 +97,18 @@ class CourseController {
             if ($this->course->create($data)) {
                 require_once __DIR__ . '/../Session.php';
                 Session::flash('success', 'Curso creado exitosamente');
-                header('Location: /admin/cursos');
+                header('Location: ' . asset('admin/cursos'));
                 exit;
             } else {
                 require_once __DIR__ . '/../Session.php';
                 Session::flash('error', 'Error al crear el curso. Por favor, intenta de nuevo.');
-                header('Location: /admin/cursos/create');
+                header('Location: ' . asset('admin/cursos/create'));
                 exit;
             }
         } catch (Exception $e) {
             require_once __DIR__ . '/../Session.php';
             Session::flash('error', 'Error al crear el curso: ' . $e->getMessage());
-            header('Location: /admin/cursos/create');
+            header('Location: ' . asset('admin/cursos/create'));
             exit;
         }
     }
@@ -112,7 +116,7 @@ class CourseController {
     // Admin: Show edit form
     public function edit($id) {
         if (!$this->auth->isAdmin()) {
-            header('Location: /login');
+            header('Location: ' . asset('login'));
             exit;
         }
         $course = $this->course->find($id);
@@ -122,7 +126,7 @@ class CourseController {
     // Admin: Update course
     public function update($id) {
         if (!$this->auth->isAdmin()) {
-            header('Location: /login');
+            header('Location: ' . asset('login'));
             exit;
         }
         $data = [
@@ -134,7 +138,7 @@ class CourseController {
         ];
 
         if ($this->course->update($id, $data)) {
-            header('Location: /admin/cursos');
+            header('Location: ' . asset('admin/cursos'));
             exit;
         } else {
             return "Error updating course.";
@@ -144,11 +148,11 @@ class CourseController {
     // Admin: Delete course
     public function destroy($id) {
         if (!$this->auth->isAdmin()) {
-            header('Location: /login');
+            header('Location: ' . asset('login'));
             exit;
         }
         if ($this->course->delete($id)) {
-            header('Location: /admin/cursos');
+            header('Location: ' . asset('admin/cursos'));
             exit;
         } else {
             return "Error deleting course.";

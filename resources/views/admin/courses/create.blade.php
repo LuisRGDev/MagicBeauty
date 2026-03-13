@@ -131,7 +131,7 @@
         $old = Session::getFlash('old') ?? [];
         ?>
 
-        <form action="/admin/cursos/store" method="POST">
+        <form action="<?= asset('admin/cursos/store') ?>" method="POST">
             <div class="form-group">
                 <label for="title">Título del Curso *</label>
                 <input type="text" id="title" name="title" value="<?= htmlspecialchars($old['title'] ?? '') ?>" required>
@@ -164,7 +164,7 @@
 
             <div class="form-actions">
                 <button type="submit" class="btn-submit">Guardar Curso</button>
-                <a href="/admin/cursos" class="btn-cancel">Cancelar</a>
+                <a href="<?= asset('admin/cursos') ?>" class="btn-cancel">Cancelar</a>
             </div>
         </form>
     </div>

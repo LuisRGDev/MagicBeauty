@@ -123,10 +123,10 @@
         <div class="admin-header">
             <h1 class="admin-title">Administrar Cursos</h1>
             <div style="display: flex; gap: 1rem;">
-                <a href="/admin/cursos" class="btn-primary">Cursos</a>
-                <a href="/admin/users" class="btn-primary" style="background: #2196F3;">Usuarios</a>
-                <a href="/admin/cursos/create" class="btn-primary">+ Nuevo Curso</a>
-                <a href="/logout" class="btn-primary" style="background: #666;">Cerrar Sesión</a>
+                <a href="<?= asset('admin/cursos') ?>" class="btn-primary">Cursos</a>
+                <a href="<?= asset('admin/users') ?>" class="btn-primary" style="background: #2196F3;">Usuarios</a>
+                <a href="<?= asset('admin/cursos/create') ?>" class="btn-primary">+ Nuevo Curso</a>
+                <a href="<?= route('logout') ?>" class="btn-primary" style="background: #666;">Cerrar Sesión</a>
             </div>
         </div>
 
@@ -176,8 +176,8 @@
                     </td>
                     <td>
                         <div class="action-btns">
-                            <a href="/admin/cursos/<?= $course->id ?>/edit" class="btn-edit">Editar</a>
-                            <a href="/admin/cursos/<?= $course->id ?>/delete" 
+                            <a href="<?= asset('admin/cursos/' . $course->id . '/edit') ?>" class="btn-edit">Editar</a>
+                            <a href="<?= asset('admin/cursos/' . $course->id . '/delete') ?>" 
                                class="btn-delete" 
                                onclick="return confirm('¿Estás seguro de eliminar este curso?')">Eliminar</a>
                         </div>
@@ -188,7 +188,7 @@
         </table>
 
         <div style="margin-top: 2rem; text-align: center;">
-            <a href="/" style="color: var(--primary-color); text-decoration: none;">← Volver al sitio</a>
+            <a href="<?= asset('') ?>" style="color: var(--primary-color); text-decoration: none;">← Volver al sitio</a>
         </div>
     </div>
 </body>

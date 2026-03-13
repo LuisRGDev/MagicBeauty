@@ -1,167 +1,365 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registrarse - Magic Beauty</title>
-    <link rel="stylesheet" href="<?= asset('css/styles.css') ?>">
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Crear Cuenta — Magik Beauty Gisel</title>
+    <link rel="stylesheet" href="<?= asset('css/styles.css') ?>"/>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
     <style>
-        .login-container {
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
             min-height: 100vh;
             display: flex;
-            align-items: center;
-            justify-content: center;
-            background: linear-gradient(to bottom, #F0FFFF, #E0F7FA);
-            padding: 2rem;
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #1a0a14 0%, #2d0a2d 50%, #0d0d1a 100%);
+            position: relative;
+            overflow-x: hidden;
+            overflow-y: auto;
+            padding: 2rem 1rem;
         }
 
-        .login-box {
-            background: rgba(255, 255, 255, 0.9);
-            border-radius: 15px;
-            padding: 3rem;
-            max-width: 450px;
+        body::before, body::after {
+            content: '';
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.35;
+            pointer-events: none;
+        }
+        body::before {
+            width: 500px; height: 500px;
+            background: radial-gradient(circle, #ff69b4, #9932cc);
+            top: -150px; left: -150px;
+        }
+        body::after {
+            width: 400px; height: 400px;
+            background: radial-gradient(circle, #9932cc, #ff1493);
+            bottom: -120px; right: -120px;
+        }
+
+        .auth-card {
+            background: rgba(255,255,255,0.04);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 24px;
+            padding: 3rem 2.5rem;
             width: 100%;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            max-width: 440px;
+            margin: auto;
+            position: relative;
+            z-index: 1;
+            box-shadow: 0 30px 80px rgba(0,0,0,0.5);
+            animation: fadeSlideUp 0.6s cubic-bezier(0.4,0,0.2,1) forwards;
         }
 
-        .login-title {
+        @keyframes fadeSlideUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        .auth-logo {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        .auth-logo a {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            text-decoration: none;
+        }
+        .auth-logo img {
+            width: 48px; height: 48px;
+            border-radius: 50%;
+            border: 2px solid rgba(255,105,180,0.5);
+        }
+        .auth-logo span {
             font-family: 'Playfair Display', serif;
-            font-size: 2rem;
-            color: var(--primary-color);
+            font-size: 1.15rem;
+            color: #fff;
+            white-space: nowrap;
+        }
+
+        .auth-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.9rem;
+            color: #fff;
+            text-align: center;
+            margin-bottom: 0.4rem;
+        }
+        .auth-subtitle {
+            color: rgba(255,255,255,0.5);
+            font-size: 0.88rem;
             text-align: center;
             margin-bottom: 2rem;
         }
 
-        .form-group {
-            margin-bottom: 1.5rem;
+        .alert-error {
+            background: rgba(255, 80, 80, 0.15);
+            border: 1px solid rgba(255,80,80,0.35);
+            color: #ffaaaa;
+            border-radius: 10px;
+            padding: 0.8rem 1rem;
+            font-size: 0.88rem;
+            margin-bottom: 1.4rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
+        .form-group {
+            margin-bottom: 1.2rem;
+        }
         .form-group label {
             display: block;
-            margin-bottom: 0.5rem;
+            font-size: 0.8rem;
             font-weight: 600;
-            color: #333;
+            color: rgba(255,255,255,0.6);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
         }
-
         .form-group input {
             width: 100%;
-            padding: 0.8rem;
-            border: 2px solid #ddd;
-            border-radius: 8px;
-            font-size: 1rem;
-            transition: border-color 0.3s;
-            box-sizing: border-box;
-        }
-
-        .form-group input:focus {
+            background: rgba(255,255,255,0.07);
+            border: 1px solid rgba(255,255,255,0.12);
+            border-radius: 12px;
+            padding: 0.85rem 1.1rem;
+            color: #fff;
+            font-size: 0.95rem;
+            font-family: 'Inter', sans-serif;
+            transition: border 0.25s, background 0.25s;
             outline: none;
-            border-color: var(--primary-color);
         }
+        .form-group input:focus {
+            border-color: rgba(255,105,180,0.6);
+            background: rgba(255,255,255,0.1);
+        }
+        .form-group input::placeholder { color: rgba(255,255,255,0.25); }
+        .form-group input.valid   { border-color: rgba(80,220,140,0.5); }
+        .form-group input.invalid { border-color: rgba(255,80,80,0.5); }
 
-        .btn-login {
-            width: 100%;
-            padding: 1rem;
-            background: var(--gradient);
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-size: 1rem;
-            font-weight: bold;
+        .input-wrapper { position: relative; }
+        .toggle-pw {
+            position: absolute;
+            right: 1rem; top: 50%;
+            transform: translateY(-50%);
+            background: none; border: none;
             cursor: pointer;
-            transition: transform 0.3s;
+            color: rgba(255,255,255,0.35);
+            font-size: 1.1rem;
+            transition: color 0.2s;
+            padding: 0;
+        }
+        .toggle-pw:hover { color: rgba(255,105,180,0.8); }
+
+        /* Password strength bar */
+        .pw-strength {
+            height: 3px;
+            border-radius: 3px;
+            background: rgba(255,255,255,0.1);
+            margin-top: 0.5rem;
+            overflow: hidden;
+        }
+        .pw-strength-bar {
+            height: 100%;
+            width: 0%;
+            border-radius: 3px;
+            transition: width 0.35s, background 0.35s;
         }
 
-        .btn-login:hover {
+        .btn-auth {
+            width: 100%;
+            padding: 0.95rem;
+            border: none;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #ff69b4, #9932cc);
+            color: #fff;
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            margin-top: 0.5rem;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 8px 25px rgba(255,105,180,0.35);
+        }
+        .btn-auth:hover {
             transform: translateY(-2px);
+            box-shadow: 0 14px 35px rgba(255,105,180,0.5);
         }
+        .btn-auth:active { transform: translateY(0); }
 
-        .error-message {
-            background: #ffebee;
-            color: #c62828;
-            padding: 1rem;
-            border-radius: 8px;
-            margin-bottom: 1.5rem;
+        .auth-divider {
             text-align: center;
+            color: rgba(255,255,255,0.25);
+            font-size: 0.8rem;
+            margin: 1.5rem 0 1.2rem;
+            position: relative;
         }
+        .auth-divider::before, .auth-divider::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: 38%;
+            height: 1px;
+            background: rgba(255,255,255,0.1);
+        }
+        .auth-divider::before { left: 0; }
+        .auth-divider::after  { right: 0; }
 
-        .success-message {
-            background: #e8f5e9;
-            color: #2e7d32;
-            padding: 1rem;
-            border-radius: 8px;
-            margin-bottom: 1.5rem;
+        .auth-link-row {
             text-align: center;
+            color: rgba(255,255,255,0.45);
+            font-size: 0.88rem;
         }
-
-        .back-link {
-            text-align: center;
-            margin-top: 1.5rem;
-        }
-
-        .back-link a {
-            color: var(--primary-color);
+        .auth-link-row a {
+            color: #ff69b4;
+            font-weight: 600;
             text-decoration: none;
+            transition: color 0.2s;
+        }
+        .auth-link-row a:hover { color: #ffaadd; }
+
+        .back-home {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.4rem;
+            margin-top: 1.5rem;
+            color: rgba(255,255,255,0.3);
+            font-size: 0.8rem;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        .back-home:hover { color: rgba(255,255,255,0.6); }
+
+        .hint {
+            font-size: 0.75rem;
+            color: rgba(255,255,255,0.3);
+            margin-top: 0.35rem;
         }
 
-        .back-link a:hover {
-            text-decoration: underline;
-        }
-
-        .password-hint {
-            font-size: 0.85rem;
-            color: #666;
-            margin-top: 0.25rem;
+        @media (max-width: 480px) {
+            .auth-card { padding: 2rem 1.4rem; border-radius: 16px; }
         }
     </style>
 </head>
 <body>
-    <div class="login-container">
-        <div class="login-box">
-            <h1 class="login-title">Crear Cuenta</h1>
-            
-            <?php if (isset($error)): ?>
-                <div class="error-message">
-                    <?= htmlspecialchars($error) ?>
-                </div>
-            <?php endif; ?>
-
-            <?php if (isset($success)): ?>
-                <div class="success-message">
-                    <?= htmlspecialchars($success) ?>
-                </div>
-            <?php endif; ?>
-
-            <form action="/register" method="POST">
-                <div class="form-group">
-                    <label for="username">Usuario</label>
-                    <input type="text" id="username" name="username" required autofocus 
-                           value="<?= isset($_POST['username']) ? htmlspecialchars($_POST['username']) : '' ?>">
-                </div>
-
-                <div class="form-group">
-                    <label for="email">Correo Electrónico</label>
-                    <input type="email" id="email" name="email" required
-                           value="<?= isset($_POST['email']) ? htmlspecialchars($_POST['email']) : '' ?>">
-                </div>
-
-                <div class="form-group">
-                    <label for="password">Contraseña</label>
-                    <input type="password" id="password" name="password" required minlength="8">
-                    <div class="password-hint">Mínimo 8 caracteres</div>
-                </div>
-
-                <div class="form-group">
-                    <label for="password_confirm">Confirmar Contraseña</label>
-                    <input type="password" id="password_confirm" name="password_confirm" required minlength="8">
-                </div>
-
-                <button type="submit" class="btn-login">Registrarse</button>
-            </form>
-
-            <div class="back-link">
-                <a href="/login">¿Ya tienes cuenta? Inicia sesión</a>
-            </div>
+    <div class="auth-card">
+        <div class="auth-logo">
+            <a href="<?= route('home') ?>">
+                <img src="<?= asset('img/logo.png') ?>" alt="Logo" onerror="this.style.display='none'"/>
+                <span>Magik Beauty Gisel</span>
+            </a>
         </div>
+
+        <h1 class="auth-title">Crear Cuenta</h1>
+        <p class="auth-subtitle">Únete a nuestra comunidad</p>
+
+        <?php if (!empty($error)): ?>
+            <div class="alert-error">⚠ <?= htmlspecialchars($error) ?></div>
+        <?php endif; ?>
+
+        <form method="POST" action="<?= asset('register') ?>" id="registerForm">
+            <input type="hidden" name="_csrf" value="<?= htmlspecialchars($csrf ?? '') ?>"/>
+
+            <div class="form-group">
+                <label for="username">Usuario</label>
+                <input type="text" id="username" name="username"
+                       placeholder="Elige un nombre de usuario"
+                       required autocomplete="username"/>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Correo Electrónico</label>
+                <input type="email" id="email" name="email"
+                       placeholder="tucorreo@ejemplo.com"
+                       required autocomplete="email"/>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Contraseña</label>
+                <div class="input-wrapper">
+                    <input type="password" id="password" name="password"
+                           placeholder="Mínimo 8 caracteres"
+                           required autocomplete="new-password"
+                           oninput="checkStrength(this.value)"/>
+                    <button type="button" class="toggle-pw" onclick="togglePw('password', this)"
+                            aria-label="Mostrar contraseña">👁</button>
+                </div>
+                <div class="pw-strength">
+                    <div class="pw-strength-bar" id="strengthBar"></div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="password_confirm">Confirmar Contraseña</label>
+                <div class="input-wrapper">
+                    <input type="password" id="password_confirm" name="password_confirm"
+                           placeholder="Repite tu contraseña"
+                           required autocomplete="new-password"
+                           oninput="checkMatch()"/>
+                    <button type="button" class="toggle-pw" onclick="togglePw('password_confirm', this)"
+                            aria-label="Mostrar contraseña">👁</button>
+                </div>
+                <p class="hint" id="matchHint"></p>
+            </div>
+
+            <button type="submit" class="btn-auth">Crear Cuenta</button>
+        </form>
+
+        <div class="auth-divider">o</div>
+
+        <div class="auth-link-row">
+            ¿Ya tienes cuenta? <a href="<?= route('login') ?>">Inicia sesión</a>
+        </div>
+
+        <a href="<?= route('home') ?>" class="back-home">← Volver al inicio</a>
     </div>
+
+    <script>
+        function togglePw(id, btn) {
+            const input = document.getElementById(id);
+            if (input.type === 'password') {
+                input.type = 'text';
+                btn.textContent = '🙈';
+            } else {
+                input.type = 'password';
+                btn.textContent = '👁';
+            }
+        }
+
+        function checkStrength(value) {
+            const bar = document.getElementById('strengthBar');
+            let score = 0;
+            if (value.length >= 8) score++;
+            if (/[A-Z]/.test(value)) score++;
+            if (/[0-9]/.test(value)) score++;
+            if (/[^A-Za-z0-9]/.test(value)) score++;
+            const colors = ['#ff4d4d','#ffaa00','#55d98f','#00e5ff'];
+            const widths  = ['25%','50%','75%','100%'];
+            bar.style.width      = score > 0 ? widths[score - 1] : '0%';
+            bar.style.background = score > 0 ? colors[score - 1] : 'transparent';
+        }
+
+        function checkMatch() {
+            const pw  = document.getElementById('password').value;
+            const pw2 = document.getElementById('password_confirm');
+            const hint = document.getElementById('matchHint');
+            if (pw2.value.length === 0) { hint.textContent = ''; return; }
+            if (pw === pw2.value) {
+                hint.textContent = '✓ Las contraseñas coinciden';
+                hint.style.color = '#55d98f';
+                pw2.classList.remove('invalid'); pw2.classList.add('valid');
+            } else {
+                hint.textContent = '✗ Las contraseñas no coinciden';
+                hint.style.color = '#ff8888';
+                pw2.classList.remove('valid'); pw2.classList.add('invalid');
+            }
+        }
+    </script>
 </body>
 </html>

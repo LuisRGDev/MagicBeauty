@@ -121,7 +121,7 @@
             </div>
         <?php endif; ?>
 
-        <form action="/admin/users/store" method="POST">
+        <form action="<?= asset('admin/users/store') ?>" method="POST">
             <div class="form-group">
                 <label for="username">Usuario *</label>
                 <input type="text" id="username" name="username" required autofocus
@@ -154,7 +154,7 @@
 
             <div class="form-actions">
                 <button type="submit" class="btn btn-primary">Crear Usuario</button>
-                <a href="/admin/users" class="btn btn-secondary">Cancelar</a>
+                <a href="<?= asset('admin/users') ?>" class="btn btn-secondary">Cancelar</a>
             </div>
         </form>
     </div>

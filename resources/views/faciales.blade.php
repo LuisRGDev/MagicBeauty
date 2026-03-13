@@ -25,7 +25,7 @@
                 <li><a href="#contacto">Contacto</a></li>
             </ul>
         </nav>
-        <!-- <a href="<?= route('home') ?>/cursos" class="cursos-btn">📚 Cursos</a> -->
+        <a href="<?= route('cursos') ?>" class="cursos-btn">📚 Cursos</a>
         <button class="menu-toggle">☰</button>
     </header>
 
@@ -144,6 +144,7 @@
             <li><a href="<?= route('pestanas') ?>">Pestañas</a></li>
             <li><a href="<?= route('faciales') ?>">Faciales</a></li>
             <li><a href="<?= route('micorp') ?>">Micropigmentación</a></li>
+            <li><a href="<?= route('cursos') ?>">Cursos</a></li>
           </ul>
         </div>
         <div class="footer-column">
@@ -180,6 +181,7 @@
                 <li><a href="<?= route('home') ?>#inicio">Inicio</a></li>
                 <li><a href="<?= route('home') ?>#nosotros">Nosotros</a></li>
                 <li><a href="<?= route('home') ?>#servicios">Servicios</a></li>
+                <li><a href="<?= route('cursos') ?>">Cursos</a></li>
                 <li><a href="#contacto">Contacto</a></li>
             </ul>
             <div class="mobile-social">

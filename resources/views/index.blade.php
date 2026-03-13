@@ -24,8 +24,8 @@
           <li><a href="#contacto">Contacto</a></li>
         </ul>
       </nav>
-      <!-- <a href="/login" class="cursos-btn">📚 Cursos</a> -->
-      <button class="menu-toggle">☰</button>
+      <a href="<?= route('cursos') ?>" class="cursos-btn">📚 Cursos</a>
+      <button class="menu-toggle" aria-label="Abrir menú">☰</button>
     </header>
 
     <section id="inicio" class="hero">
@@ -45,6 +45,14 @@
     <section class="social-carousel">
       <div class="carousel-container">
         <div class="carousel-track">
+          <!-- Duplicated Last Slide -->
+          <div class="carousel-slide">
+            <img src="https://images.pexels.com/photos/3373745/pexels-photo-3373745.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Facebook" crossorigin="anonymous" />
+            <a href="https://www.facebook.com/profile.php?id=100064063332814&rdid=zkRjetzghBoTXe2Y&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F17LBFWRzyw%2F#" target="_blank" class="social-btn facebook">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+              Síguenos en Facebook
+            </a>
+          </div>
           <div class="carousel-slide">
             <img src="https://images.pexels.com/photos/3997386/pexels-photo-3997386.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&dpr=2" alt="TikTok" crossorigin="anonymous" />
             <a href="https://www.tiktok.com/@magikbeautygisel?_r=1&_t=ZT-91mWNgkfVVX" target="_blank" class="social-btn tiktok">
@@ -66,7 +74,7 @@
               Síguenos en Facebook
             </a>
           </div>
-          <!-- Duplicated for infinite loop -->
+          <!-- Duplicated First Slide -->
           <div class="carousel-slide">
             <img src="https://images.pexels.com/photos/3997386/pexels-photo-3997386.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&dpr=2" alt="TikTok" crossorigin="anonymous" />
             <a href="https://www.tiktok.com/@magikbeautygisel?_r=1&_t=ZT-91mWNgkfVVX" target="_blank" class="social-btn tiktok">
@@ -254,6 +262,7 @@
             <li><a href="<?= route('pestanas') ?>">Pestañas</a></li>
             <li><a href="<?= route('faciales') ?>">Faciales</a></li>
             <li><a href="<?= route('micorp') ?>">Micropigmentación</a></li>
+            <li><a href="<?= route('cursos') ?>">Cursos</a></li>
           </ul>
         </div>
         <div class="footer-column">
@@ -290,6 +299,7 @@
                 <li><a href="<?= route('home') ?>#inicio">Inicio</a></li>
                 <li><a href="<?= route('home') ?>#nosotros">Nosotros</a></li>
                 <li><a href="<?= route('home') ?>#servicios">Servicios</a></li>
+                <li><a href="<?= route('cursos') ?>">Cursos</a></li>
                 <li><a href="#contacto">Contacto</a></li>
             </ul>
             <div class="mobile-social">

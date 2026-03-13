@@ -14,7 +14,7 @@ class UserController {
     
     private function requireAdmin() {
         if (!$this->auth->isAdmin()) {
-            header('Location: /');
+            header('Location: ' . asset('/'));
             exit;
         }
     }
@@ -83,7 +83,7 @@ class UserController {
             $stmt = $this->conn->prepare($query);
             $stmt->execute([$username, $email, $hashedPassword, $role]);
             
-            header('Location: /admin/users');
+            header('Location: ' . asset('admin/users'));
             exit;
         } catch (PDOException $e) {
             return view('admin.users.create', ['error' => 'Error al crear el usuario: ' . $e->getMessage()]);
@@ -105,7 +105,7 @@ class UserController {
             $user = $stmt->fetch(PDO::FETCH_OBJ);
             
             if ($user && $user->role === 'admin' && $adminCount <= 1) {
-                header('Location: /admin/users?error=' . urlencode('No se puede eliminar el último administrador'));
+                header('Location: ' . asset('admin/users?error=' . urlencode('No se puede eliminar el último administrador')));
                 exit;
             }
             
@@ -114,10 +114,10 @@ class UserController {
             $stmt = $this->conn->prepare($query);
             $stmt->execute([$id]);
             
-            header('Location: /admin/users');
+            header('Location: ' . asset('admin/users'));
             exit;
         } catch (PDOException $e) {
-            header('Location: /admin/users?error=' . urlencode('Error al eliminar el usuario'));
+            header('Location: ' . asset('admin/users?error=' . urlencode('Error al eliminar el usuario')));
             exit;
         }
     }
